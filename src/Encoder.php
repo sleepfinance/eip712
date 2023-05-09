@@ -156,8 +156,7 @@ class Encoder
     public static function encode(
         Eip712 $eip712
     ): string {
-        $domain = 'EIP712Domain';
-        $domainHash = static::getStructHash($eip712, $domain, $eip712->domain);
+        $domainHash = static::getStructHash($eip712, $eip712->eip712Domain, $eip712->domain);
         $messageHash = static::getStructHash($eip712, $eip712->primaryType, $eip712->message);
         return Keccak::hash(hex2bin('1901' . $domainHash . $messageHash), 256);
     }

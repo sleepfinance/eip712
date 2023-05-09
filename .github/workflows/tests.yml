@@ -1,13 +1,30 @@
-name: Tests
+name: Run tests
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - uses: php-actions/composer@v6
-      - run: echo "Composer dependencies have been installed"
-      - run: vendor/bin/phpunit tests
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, gmp, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: pcov
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction
+      - name: Execute tests
+        run: vendor/bin/phpunit --coverage-clover coverage/coverage.xml
+      - name: Codeov
+        if: ${{ github.actor != 'dependabot' }}
+        uses: codecov/codecov-action@v3.1.0
+        with:
+          fail_ci_if_error: true
+          files: coverage/coverage.xml
+          name: codecov-report
+          verbose: true
+          
+        
