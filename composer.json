@@ -1,0 +1,39 @@
+{
+    "name": "sleepfinance/eip712",
+    "description": "Generate Eip712 Hashes for signing",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SleepFinance\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zamba Izo",
+            "email": "ofuzak@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "kornrunner/keccak": "^1.1",
+        "kornrunner/solidity": "^0.2.0",
+        "illuminate/collections": "^10.9",
+        "illuminate/support": "^10.9",
+        "sleefinance/simple-web3-php": "^0.13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.5",
+        "barryvdh/laravel-ide-helper": "^2.13"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ]
+    }
+}
