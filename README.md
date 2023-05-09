@@ -1,7 +1,7 @@
 # `eip-712`
 
 [![PHP](https://github.com/sleepfinance/eip712/actions/workflows/tests.yml/badge.svg)](https://github.com/sleepfinance/eip712/actions/workflows/php.yml)
-[![codecov](https://codecov.io/gh/sleepfinance/eip712/branch/master/graph/badge.svg)](https://codecov.io/gh/sleepfinance/eip712)
+[![codecov](https://codecov.io/gh/sleepfinance/eip712/branch/main/graph/badge.svg?token=CPJCHXZTN2)](https://codecov.io/gh/sleepfinance/eip712)
 [![Licensed under the MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sleepfinance/eip712/blob/master/LICENSE)
 
 This is a library laravel / php to help generata an EIP712 Hash for signing and verifying [EIP-712](https://eips.ethereum.org/EIPS/eip-712) based messages. It is fully written for php 8.0, and is currently only compatible with the latest specification of EIP-712 ([eth_signTypedData_v4](https://docs.metamask.io/guide/signing-data.html#sign-typed-data-v4)).
