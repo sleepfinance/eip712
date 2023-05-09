@@ -69,17 +69,18 @@ use kornrunner\Secp256k1;
 
 // import the EIP-712 json fil;
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $hashToSign = $eip712->hashTypedDataV4();
 
 //signing with account 0xf3022686aa43B98362c989659561b9B348977897
 $pvk="0x2870b52bfe2401ac0eed7f62fd4bd03eb579c61369c6b4dd6931fb4a57d71b09";
+
 $secp256k1 = new Secp256k1();
+
 $signed   = $secp256k1->sign($hashToSign, $pvk);
-//signing with account 0xf3022686aa43B98362c989659561b9B348977897
-$pvk="0x2870b52bfe2401ac0eed7f62fd4bd03eb579c61369c6b4dd6931fb4a57d71b09";
-$secp256k1 = new Secp256k1();
-$signed   = $secp256k1->sign($hashToSign, $pvk);
+
 //Hex
 $signatureToSubmit = $signed->toHex();
 
@@ -157,28 +158,42 @@ $mailTypedData = [
     ]
 ];
 $eip712 = new Eip712($mailTypedData);
+
 $hashToSign = $eip712->hashTypedDataV4();
 
 //signing with account 0xf3022686aa43B98362c989659561b9B348977897
 $pvk="0x2870b52bfe2401ac0eed7f62fd4bd03eb579c61369c6b4dd6931fb4a57d71b09";
+
 $secp256k1 = new Secp256k1();
+
 $signed   = $secp256k1->sign($hashToSign, $pvk);
+
 //Hex
 $signatureToSubmit = $signed->toHex();
 ```
 ### You many need to recompose signature!!
 
-Somtimes ``` $signatureToSubmit = $signed->toHex();```  hex doesnt work. You may need to recompose signature
+Sometimes ``` $signatureToSubmit = $signed->toHex();```  hex doesnt work. You may need to recompose signature
 
 ```php
+$signed   = $secp256k1->sign($hashToSign, $pvk);
+
+//$signatureToSubmit = $signed->toHex();
+
+$r   = $this->hexup(gmp_strval($signed->getR(), 16));
+
+$s   = $this->hexup(gmp_strval($signed->getS(), 16));
+
+$v   = dechex((int) $signed->getRecoveryParam() + 27);
+
+$signatureToSubmit = "0x$r$s$v";
+
+----
+
 function hexup(string $value): string
 {
     return strlen($value) % 2 === 0 ? $value : "0{$value}";
 }
-$r   = $this->hexup(gmp_strval($signed->getR(), 16));
-$s   = $this->hexup(gmp_strval($signed->getS(), 16));
-$v   = dechex((int) $signed->getRecoveryParam() + 27);
-$signatureToSubmit = "0x$r$s$v";
 ```
 
 ### Encoder Functions
@@ -191,9 +206,14 @@ This function will return the full EIP-191 encoded message to be signed hashed u
 
 ```php
 use SleepFinance\Encoder;
+
+
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $hashToSign = Encoder::encode($eip712);
+
 dump($hashToSign);
 //be609aee343fb3c4b28e1df9e632fca64fcfaede20f02e86244efddf30957bd2
 ```
@@ -204,9 +224,14 @@ This function returns a Keccak-256 hash for a single struct type (e.g. EIP712Dom
 
 ```php
 use SleepFinance\Encoder;
+
+
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $hash = Encoder::getStructHash($eip712, "EIP712Domain", $eip712->domain);
+
 dump($hash);
  // f2cee375fa42b42143804025fc449deafd50cc031ca257e0b194a650a912090f
 ```
@@ -217,9 +242,14 @@ This function returns the raw ABI encoded data for the struct type.
 
 ```php
 use SleepFinance\Encoder;
+
+
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $abiEncodedData = Encoder::encodeData($eip712, "EIP712Domain", $eip712->domain);
+
 dump($abiEncodedData);
  // 8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400fc70ef06638535b4881fafcac8287e210e3769ff1a8e91f1b95d6246e61e4d3c6c89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc60000000000000000000000000000000000000000000000000000000000000001000000000000000000000000cccccccccccccccccccccccccccccccccccccccc
 ```
@@ -230,9 +260,14 @@ This function returns the type hash for a struct type. This is the same as `Kecc
 
 ```php
 use SleepFinance\Encoder;
+
+
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $typeHash = Encoder::getTypeHash($eip712, "EIP712Domain");
+
 dump($typeHash);
  // 8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f
 ```
@@ -245,9 +280,14 @@ This function returns the type string before hashing it, e.g. `EIP712Domain(stri
 
 ```php
 use SleepFinance\Encoder;
+
+
 $mailTypedJson = file_get_contents('path/to/your-json-file.json');
+
 $eip712 = new Eip712($mailTypedJson);
+
 $encodedType = Encoder::encodeType($eip712, "EIP712Domain");
+
 dump($encodedType);
  // EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)
 ```
