@@ -6,7 +6,7 @@ use SleepFinance\Encoder;
 use Tests\TestCase;
 class EncoderTest extends TestCase
 {
-    public function test_it_returns_all_dependencies_for_the_primary_type(): void
+    public function testGetDependencies(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');
@@ -20,7 +20,7 @@ class EncoderTest extends TestCase
     }
 
 
-    public function test_it_encodes_a_type_to_a_hashable_string(): void
+    public function testEncodeType(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');
@@ -35,7 +35,7 @@ class EncoderTest extends TestCase
     }
 
 
-    public function test_it_returns_a_32_byte_hash_for_a_type(): void
+    public function testGetTypeHash(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');
@@ -55,7 +55,7 @@ class EncoderTest extends TestCase
     }
 
 
-    public function test_it_encodes_data_to_an_ABI_encoded_string(): void
+    public function testEncodeData(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');
@@ -77,7 +77,7 @@ class EncoderTest extends TestCase
 
 
 
-    public function test_it_returns_a_32_byte_hash_for_a_struct(): void
+    public function testGetStructHash(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');
@@ -94,7 +94,7 @@ class EncoderTest extends TestCase
     }
 
 
-    public function test_it_hashes_the_message_with_Keccak_256(): void
+    public function testEncode(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
         $approvalTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-2.json');

@@ -9,7 +9,7 @@ class Eip712Test extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_it_throws_for_invalid_json_schema()
+    public function testHashTypedDataV4()
     {
         $invalidSchema = file_get_contents(__DIR__ . '/__fixtures__/invalid-schema.json');
         $this->expectExceptionMessage('Invalid Typed Data');
