@@ -44,7 +44,7 @@ class EncoderTest extends TestCase
     }
 
     /**
-     * @covers ::testGetTypeHash
+     * @covers ::getTypeHash
      */
     public function testGetTypeHash(): void
     {
