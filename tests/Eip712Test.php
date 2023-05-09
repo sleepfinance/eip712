@@ -5,12 +5,12 @@ use SleepFinance\Eip712;
 use Tests\TestCase;
 
 /**
- * @covers Eip712
+ * @coversDefaultClass \SleepFinance\Eip712
  */
 class Eip712Test extends TestCase
 {
     /**
-     * A basic feature test example.
+     * @covers ::__construct
      */
     public function testHashTypedDataV4()
     {

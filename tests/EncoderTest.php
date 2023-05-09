@@ -6,10 +6,13 @@ use SleepFinance\Encoder;
 use Tests\TestCase;
 
 /**
- * @covers Encoder
+ * @coversDefaultClass \SleepFinance\Encoder
  */
 class EncoderTest extends TestCase
 {
+    /**
+     * @covers ::getDependencies
+     */
     public function testGetDependencies(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
@@ -23,7 +26,9 @@ class EncoderTest extends TestCase
         $this->assertSame(Encoder::getDependencies($approvalEip712, 'TransactionApproval'), ['TransactionApproval', 'Transaction']);
     }
 
-
+    /**
+     * @covers ::encodeType
+     */
     public function testEncodeType(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
@@ -38,7 +43,9 @@ class EncoderTest extends TestCase
         $this->assertSame(Encoder::encodeType($approvalEip712, 'TransactionApproval'), 'TransactionApproval(address owner,Transaction transaction)Transaction(address to,uint256 amount,bytes data,uint256 nonce)');
     }
 
-
+    /**
+     * @covers ::testGetTypeHash
+     */
     public function testGetTypeHash(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
@@ -58,7 +65,9 @@ class EncoderTest extends TestCase
         $this->assertSame(Encoder::getTypeHash($arrayEip712, 'Mail'), 'c81112a69b6596b8bc0678e67d97fbf9bed619811fc781419323ec02d1c7290d');
     }
 
-
+    /**
+     * @covers ::encodeData
+     */
     public function testEncodeData(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
@@ -80,7 +89,9 @@ class EncoderTest extends TestCase
 
 
 
-
+    /**
+     * @covers ::getStructHash
+     */
     public function testGetStructHash(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
@@ -97,7 +108,9 @@ class EncoderTest extends TestCase
         $this->assertSame(Encoder::getStructHash($approvalEip712, 'TransactionApproval', $approvalEip712->message), '309886ad75ec7c2c6a69bffa2669bad00e3b1e0a85221eff4e8926a2f8ff5077');
     }
 
-
+    /**
+     * @covers ::encode
+     */
     public function testEncode(): void
     {
         $mailTypedData = file_get_contents(__DIR__ . '/__fixtures__/typed-data-1.json');
