@@ -8,7 +8,7 @@ This is a library laravel / php to help generata an EIP712 Hash for signing and 
 
 https://eips.ethereum.org/EIPS/eip-712
 
-Note that this library currently does not handle the signing itself. For this, you can use something like ['kornrunner\Secp256k1]('https://github.com/kornrunner/php-secp256k1). For some examples please see below.
+Note that this library currently does not handle the signing itself. For this, you can use something like [`kornrunner\Secp256k1`]('https://github.com/kornrunner/php-secp256k1). For some examples please see below.
 
 ## Installation
 
@@ -198,7 +198,7 @@ function hexup(string $value): string
 
 ### Encoder Functions
 
-Here is a brief description of the functions available in the ecoder. For more detailed examples, you can refer to [`src/tests`](https://github.com/sleepfinance/eip712/blob/master/tests).
+Here is a brief description of the functions available in the encoder. For more detailed examples, you can refer to [`src/tests`](https://github.com/sleepfinance/eip712/blob/master/tests).
 
 #### `Encoder::encode(SleepFinance\Eip712 $typedData)`
 
