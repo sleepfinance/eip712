@@ -4,6 +4,9 @@ namespace Tests;
 use SleepFinance\Eip712;
 use Tests\TestCase;
 
+/**
+ * @covers Eip712
+ */
 class Eip712Test extends TestCase
 {
     /**

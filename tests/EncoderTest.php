@@ -4,6 +4,10 @@ namespace Tests;
 use SleepFinance\Eip712;
 use SleepFinance\Encoder;
 use Tests\TestCase;
+
+/**
+ * @covers Encoder
+ */
 class EncoderTest extends TestCase
 {
     public function testGetDependencies(): void
