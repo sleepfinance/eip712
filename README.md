@@ -13,7 +13,7 @@ Note that this library currently does not handle the signing itself. For this, y
 ## Installation
 
 ```
-$ composer require sleefinance/eip712
+$ composer require sleepfinance/eip712
 ```
 
 ### Getting Started
