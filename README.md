@@ -12,7 +12,7 @@ Note that this library currently does not handle the signing itself. For this, y
 
 ## Installation
 
-```
+```bash
 $ composer require sleepfinance/eip712
 ```
 
