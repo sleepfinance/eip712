@@ -23,8 +23,8 @@
     "require": {
         "kornrunner/keccak": "^1.1",
         "kornrunner/solidity": "^0.2.0",
-        "illuminate/collections": "^10.9",
-        "illuminate/support": "^10.9",
+        "illuminate/collections": "^8.0|^9.0|^10.9",
+        "illuminate/support": "^8.0|^9.0|^10.9",
         "sleefinance/simple-web3-php": "^0.13.0"
     },
     "require-dev": {
