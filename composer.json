@@ -23,12 +23,12 @@
     "require": {
         "kornrunner/keccak": "^1.1",
         "kornrunner/solidity": "^0.2.0",
-        "illuminate/collections": "^8.0|^9.0|^10.9|^11",
-        "illuminate/support": "^8.0|^9.0|^10.9|^11",
+        "illuminate/collections": "^8.0|^9.0|^10.9|^11|^12",
+        "illuminate/support": "^8.0|^9.0|^10.9|^11|^12",
         "sleepfinance/simple-web3-php": "^0.13.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.5|^9.0",
+        "orchestra/testbench": "^8.5|^9.0|^10",
         "barryvdh/laravel-ide-helper": "^2.13"
     },
     "scripts": {
